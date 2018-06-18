@@ -20,8 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('idJeux')->nullable()->unsigned();
             $table->integer('idPlateforme')->nullable()->unsigned();
+            $table->string('role')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->date('delete_at')->nullable();
+
 
             $table->foreign('idJeux')->references('id')->on('jeux');
             $table->foreign('idPlateforme')->references('id')->on('plateformes');

@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('titre');
             $table->string('couleur')->nullable();
             $table->timestamps();
+            $table->date('delete_at')->nullable();
+
         });
     }
 

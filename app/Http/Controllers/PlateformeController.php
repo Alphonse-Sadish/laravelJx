@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plateforme;
 use Illuminate\Http\Request;
 
 class PlateformeController extends Controller
@@ -13,7 +14,8 @@ class PlateformeController extends Controller
      */
     public function index()
     {
-        //
+        $plateformes = Plateforme::all();
+        return view('plateformes.index',compact('plateformes'));
     }
 
     /**

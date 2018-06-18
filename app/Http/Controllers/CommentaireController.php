@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
@@ -13,7 +14,8 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        $commentaire = Commentaire::all();
+        return view('commentaires.index',compact('commentaire'));
     }
 
     /**

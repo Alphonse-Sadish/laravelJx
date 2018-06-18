@@ -18,6 +18,8 @@ class CreatePlateformesTable extends Migration
             $table->string('nom');
             $table->string('couleur')->nullable();
             $table->timestamps();
+            $table->date('delete_at')->nullable();
+
         });
     }
 

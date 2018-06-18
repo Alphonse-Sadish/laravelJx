@@ -19,6 +19,8 @@ class CreateMessagesTable extends Migration
             $table->integer('idUser')->nullable()->unsigned();
 
             $table->timestamps();
+            $table->date('delete_at')->nullable();
+
 
             $table->foreign('idUser')->references('id')->on('users');
 

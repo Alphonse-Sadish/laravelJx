@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Avi
@@ -25,8 +26,13 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @package App\Models
  */
 class Avi extends Eloquent
+
 {
-	protected $casts = [
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
+    protected $casts = [
 		'note' => 'int',
 		'idUser' => 'int'
 	];
@@ -40,6 +46,6 @@ class Avi extends Eloquent
 
 	public function user()
 	{
-		return $this->belongsTo(\App\Models\User::class, 'idUser');
+		return $this->belongsTo(\App\User::class, 'idUser');
 	}
 }

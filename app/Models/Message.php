@@ -8,6 +8,8 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Message
@@ -24,6 +26,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Message extends Eloquent
 {
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
 	protected $casts = [
 		'idUser' => 'int'
 	];

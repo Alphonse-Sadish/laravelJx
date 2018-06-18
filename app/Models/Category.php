@@ -8,6 +8,8 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Category
@@ -24,6 +26,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Category extends Eloquent
 {
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
 	protected $fillable = [
 		'titre',
 		'couleur'

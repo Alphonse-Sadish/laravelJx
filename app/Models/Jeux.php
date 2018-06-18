@@ -8,6 +8,8 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Jeux
@@ -30,6 +32,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Jeux extends Eloquent
 {
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
 	protected $table = 'jeux';
 
 	protected $casts = [

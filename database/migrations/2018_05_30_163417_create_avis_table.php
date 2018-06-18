@@ -19,6 +19,7 @@ class CreateAvisTable extends Migration
             $table->string('contenu');
             $table->integer('note');
             $table->integer('idUser')->nullable()->unsigned();
+            $table->date('delete_at')->nullable();
 
             $table->timestamps();
 

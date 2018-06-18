@@ -22,6 +22,8 @@ class CreateJeuxTable extends Migration
             $table->integer('idCategorie')->nullable()->unsigned();
             $table->integer('idPlateforme')->nullable()->unsigned();
             $table->timestamps();
+            $table->date('delete_at')->nullable();
+
 
             $table->foreign('idCategorie')->references('id')->on('categories');
             $table->foreign('idPlateforme')->references('id')->on('plateformes');

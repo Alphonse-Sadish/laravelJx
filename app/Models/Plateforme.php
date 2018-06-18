@@ -8,6 +8,8 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Plateforme
@@ -25,6 +27,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Plateforme extends Eloquent
 {
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
 	protected $fillable = [
 		'nom',
 		'couleur'

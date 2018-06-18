@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AvisController extends Controller
 {
@@ -14,7 +15,7 @@ class AvisController extends Controller
      */
     public function index()
     {
-        $avis = all();
+        $avis = Avi::withTrashed()->get();
         return view('avis.index',compact('avis'));
     }
 
@@ -25,7 +26,7 @@ class AvisController extends Controller
      */
     public function create()
     {
-        //
+        return view('avis.add');
     }
 
     /**
@@ -36,7 +37,19 @@ class AvisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre' => 'required|min:3',
+            'contenu' => 'required',
+            'note' => 'required|numeric',
+
+        ]);
+        $avis = new Avi();
+        $avis->titre = $request->titre;
+        $avis->note = $request->note;
+        $avis->contenu = $request->contenu;
+        $avis->idUser = Auth::id();
+        $avis->save();
+        return redirect()->route('avis.index')->with('response','Avis a bien été ajouter');
     }
 
     /**
@@ -58,7 +71,8 @@ class AvisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $avis = Avi::withTrashed()->find($id);
+        return view('avis.edit',compact('avis'));
     }
 
     /**
@@ -70,7 +84,20 @@ class AvisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'titre' => 'required|min:3',
+            'contenu' => 'required',
+            'note' => 'required|numeric',
+
+        ]);
+        $avis = Avi::withTrashed()->find($id);
+        $avis->titre = $request->titre;
+        $avis->note = $request->note;
+        $avis->contenu = $request->contenu;
+        $avis->idUser = Auth::id();
+        $avis->save();
+        return redirect()->route('avis.index')->with('response','Avis a bien été modifier');
+
     }
 
     /**
@@ -81,6 +108,18 @@ class AvisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $avis = Avi::withTrashed()->find($id);
+        if(!$avis instanceof Avi)
+        {
+            return redirect()->route('avis.index');
+        }
+        if(!$avis->trashed()){
+
+            $avis->delete();
+            return redirect()->route('avis.index')->with('response','Avis a bien été désactiver ');
+        }else{
+            $avis->restore();
+            return redirect()->route('avis.index')->with('response','Avis a bien été restaurer');
+        }
     }
 }

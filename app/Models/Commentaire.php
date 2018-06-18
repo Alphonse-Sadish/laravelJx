@@ -8,6 +8,8 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Commentaire
@@ -27,6 +29,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Commentaire extends Eloquent
 {
+    use SoftDeletes;
+    public $timestamps = false;
+    const DELETED_AT = 'delete_at';
+
 	protected $casts = [
 		'position' => 'int',
 		'idJeux' => 'int',
