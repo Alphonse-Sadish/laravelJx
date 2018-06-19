@@ -51,6 +51,7 @@
                                 <li><a class="nav-link" href="{{ route('messages.index') }}">{{ __('Messages') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">{{ __('Utilisateurs') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('plateformes.index') }}">{{ __('Plateformes') }}</a></li>
+                                <li><a class="nav-link" href="{{ url('/dons') }}">{{ __('Dons') }}</a></li>
 
 
 
@@ -83,5 +84,6 @@
             @yield('content')
         </main>
     </div>
+@yield('script')
 </body>
 </html>

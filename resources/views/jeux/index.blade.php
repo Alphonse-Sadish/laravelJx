@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: alpho
- * Date: 18/06/2018
- * Time: 09:25
- */
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="container">
+        <div class="jumbotron">
+            <center><h1>Vente des jeux</h1>></center>
+
+        </div>
+    </div>
+
+@endsection

@@ -22,6 +22,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/dons', 'DonsController@index')->name('dons');
+
+
 // Route Resource
 
 Route::resource('avis','AvisController');
