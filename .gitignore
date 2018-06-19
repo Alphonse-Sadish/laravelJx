@@ -20,3 +20,7 @@ webpack.mix.js
 /tests
 /bootstrap
 /middleware
+.gitattributes
+composer.lock
+app/console
+config/filesystems.php
