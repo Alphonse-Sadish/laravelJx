@@ -15,7 +15,7 @@
 
 @section('script')
 
-<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button tt"
         data-key="{{ env('STRIPE_PUB_KEY') }}"
         data-amount="1000"
         data-description="Vos dons nous permettrez d'améliorer le site"

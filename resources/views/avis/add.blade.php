@@ -7,7 +7,8 @@
         </div>
 
         @if (count($errors) > 0)
-            <div class="error">
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -15,7 +16,6 @@
                 </ul>
             </div>
         @endif
-
 
     {!! Form::open(array('route' => 'avis.store','method'=>'POST')) !!}
     @include('avis.form')

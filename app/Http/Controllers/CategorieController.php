@@ -14,7 +14,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::withTrashed()->get();
         return view('categories.index',compact('category'));
     }
 
@@ -25,7 +25,8 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.add');
+
     }
 
     /**
@@ -36,7 +37,17 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre' => 'required|min:3',
+            'couleur' => 'required',
+
+        ]);
+        $categories = new Category();
+        $categories->titre = $request->titre;
+        $categories->couleur = $request->couleur;
+
+        $categories->save();
+        return redirect()->route('categories.index')->with('response','Categorie a bien été ajouter');
     }
 
     /**
@@ -58,7 +69,8 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::withTrashed()->find($id);
+        return view('categories.edit',compact('categories'));
     }
 
     /**
@@ -70,7 +82,17 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'titre' => 'required|min:3',
+            'couleur' => 'required',
+
+        ]);
+        $categories = Category::withTrashed()->find($id);
+        $categories->titre = $request->titre;
+        $categories->couleur = $request->couleur;
+
+        $categories->save();
+        return redirect()->route('categories.index')->with('response','Categorie a bien été modifier');
     }
 
     /**
@@ -81,6 +103,18 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categorie = Category::withTrashed()->find($id);
+        if(!$categorie instanceof Category)
+        {
+            return redirect()->route('categories.index');
+        }
+        if(!$categorie->trashed()){
+
+            $categorie->delete();
+            return redirect()->route('categories.index')->with('response','categorie a bien été désactiver ');
+        }else{
+            $categorie->restore();
+            return redirect()->route('categories.index')->with('response','categorie a bien été restaurer');
+        }
     }
 }

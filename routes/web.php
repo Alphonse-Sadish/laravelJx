@@ -24,8 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dons', 'DonsController@index')->name('dons');
 
-Route::get('/achatJeux/{element}', 'DonsController@index');
+Route::get('/achatJeux/{element}', 'JeuxController@achatJeux');
 
+Route::get('/sell','JeuxController@sell');
+
+Route::get('/renseignement','JeuxController@validatesell');
 
 
 

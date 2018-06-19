@@ -17,6 +17,10 @@ class JeuxController extends Controller
         $jeux = Jeux::all();
         return view('jeux.index',compact('jeux'));
     }
+    public function sell(){
+        $jeux = Jeux::all();
+        return view('jeux.achat.index',compact('jeux'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -82,5 +86,13 @@ class JeuxController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function achatJeux($id){
+        $idJeux = $id;
+        return view('jeux.achat.achat');
+
+    }
+    public function validatesell(Request $request){
+
     }
 }

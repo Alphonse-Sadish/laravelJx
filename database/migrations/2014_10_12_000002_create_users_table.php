@@ -18,6 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('adresse')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('rue')->nullable();
+            $table->string('appart')->nullable();
             $table->integer('idJeux')->nullable()->unsigned();
             $table->integer('idPlateforme')->nullable()->unsigned();
             $table->string('role')->nullable();

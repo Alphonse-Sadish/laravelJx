@@ -13,7 +13,6 @@
             </div>
         @endif
 
-
         <table class="table">
         <thead class="thead-light">
         <tr>

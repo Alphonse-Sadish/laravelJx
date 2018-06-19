@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
+    </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -47,11 +47,23 @@
                                 <li><a class="nav-link" href="{{ route('avis.index') }}">{{ __('Avis') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('categories.index') }}">{{ __('Categories') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('commentaires.index') }}">{{ __('Commentaires') }}</a></li>
-                                <li><a class="nav-link" href="{{ route('jeux.index') }}">{{ __('Jeux') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('messages.index') }}">{{ __('Messages') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">{{ __('Utilisateurs') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('plateformes.index') }}">{{ __('Plateformes') }}</a></li>
                                 <li><a class="nav-link" href="{{ url('/dons') }}">{{ __('Dons') }}</a></li>
+
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        jeux <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('jeux.index') }}">Liste </a>
+                                        <a class="dropdown-item" href="{{ url('/sell') }}">Ventes</a>
+
+
+                                    </div>
+                                </li>
 
 
 
