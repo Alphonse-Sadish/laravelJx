@@ -24,6 +24,7 @@ class CreateJeuxTable extends Migration
             $table->string('state');
             $table->timestamps();
             $table->date('delete_at')->nullable();
+            $table->integer('prix')->nullabe();
 
 
             $table->foreign('idCategorie')->references('id')->on('categories');

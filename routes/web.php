@@ -24,6 +24,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dons', 'DonsController@index')->name('dons');
 
+Route::get('/achatJeux/{element}', 'DonsController@index');
+
+
+
 
 // Route Resource
 
