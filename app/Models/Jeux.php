@@ -68,6 +68,6 @@ class Jeux extends Eloquent
 
 	public function users()
 	{
-		return $this->hasMany(\App\Models\User::class, 'idJeux');
+		return $this->hasMany(\App\User::class, 'idJeux');
 	}
 }

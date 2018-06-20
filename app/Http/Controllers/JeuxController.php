@@ -19,8 +19,10 @@ class JeuxController extends Controller
      */
     public function index()
     {
-        $jeux = Jeux::all();
+        $jeux = Jeux::withTrashed()->get();
         $categorie = Category::all();
+
+
 
         return view('jeux.index',compact('jeux','categorie'));
     }

@@ -17,7 +17,6 @@
 
 
     @foreach($jeux as $j)
-
             <div style="    border-style: solid; border-color:{{$j->category->couleur}}" >
                 <h3><center>{{$j->nom}}</center></h3>
                 <img src="{{$j->image}}">

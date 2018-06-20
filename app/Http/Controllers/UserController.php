@@ -26,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.add');
+
     }
 
     /**
@@ -37,7 +38,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -82,6 +83,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user =  \App\User::withTrashed()->find($id);
+        if(!$user instanceof \App\User)
+        {
+            return redirect()->route('users.index');
+        }
+        if(!$user->trashed()){
+
+            $user->delete();
+            return redirect()->route('users.index')->with('response','User a bien été désactiver ');
+        }else{
+            $user->restore();
+            return redirect()->route('users.index')->with('response','User a bien été restaurer');
+        }
     }
 }
