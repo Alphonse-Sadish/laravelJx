@@ -87,7 +87,7 @@ class AvisController extends Controller
         request()->validate([
             'titre' => 'required|min:3',
             'contenu' => 'required',
-            'note' => 'required|numeric',
+            'note' => 'required|numeric|between:0,5',
 
         ]);
         $avis = Avi::withTrashed()->find($id);

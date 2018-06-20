@@ -21,10 +21,10 @@ class CreateJeuxTable extends Migration
             $table->string('image')->nullable();
             $table->integer('idCategorie')->nullable()->unsigned();
             $table->integer('idPlateforme')->nullable()->unsigned();
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->timestamps();
             $table->date('delete_at')->nullable();
-            $table->integer('prix')->nullabe();
+            $table->integer('prix')->nullable();
 
 
             $table->foreign('idCategorie')->references('id')->on('categories');

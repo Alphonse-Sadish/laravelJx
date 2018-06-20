@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Jeux;
+use App\Models\Plateforme;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class JeuxController extends Controller
 {
@@ -15,10 +20,21 @@ class JeuxController extends Controller
     public function index()
     {
         $jeux = Jeux::all();
-        return view('jeux.index',compact('jeux'));
+        $categorie = Category::all();
+
+        return view('jeux.index',compact('jeux','categorie'));
+    }
+
+    public function categJeux($id){
+        $idCateg = $id;
+        $jeux = Jeux::where('idCategorie',$idCateg)->get();
+        $categorie = Category::all();
+
+        return view('jeux.index',compact('jeux','categorie'));
+
     }
     public function sell(){
-        $jeux = Jeux::all();
+        $jeux = Jeux::where('state','vendre')->get();
         return view('jeux.achat.index',compact('jeux'));
     }
 
@@ -93,6 +109,19 @@ class JeuxController extends Controller
 
     }
     public function validatesell(Request $request){
+         $id = Auth::id();
+        request()->validate([
+            'age' => 'required',
+            'adresse' => 'required',
+            'rue' => 'required',
+
+        ]);
+        $user = User::withTrashed()->find($id);
+        $user->adresse = $request->adresse;
+        $user->age = $request->age;
+        $user->rue = $request->rue;
+        $user->appart = $request->appart;
+        $user->save();
 
     }
 }

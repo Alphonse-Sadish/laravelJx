@@ -22,25 +22,25 @@
                 <div class="col-xs-3 col-sm-3 col-md-3">
                     <div class="form-group">
                         <strong>age</strong>
-                        <input class="form-control">
+                        <input type="text" class="form-control" name="age">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>adresse:</strong>
-                        <input class="form-control">
+                        <input type="text" class="form-control" name="adresse">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>rue</strong>
-                        <input class="form-control">
+                        <input class="form-control" type="text" name="rue">
                     </div>
                 </div>
                 <div class="col-xs-5 col-sm-5 col-md-5">
                     <div class="form-group ">
                         <strong>bat,appart:</strong>
-                        <input class="form-control">
+                        <input class="form-control" type="text" name="rue">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -16,7 +16,7 @@ class CreateAvisTable extends Migration
         Schema::create('avis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titre');
-            $table->string('contenu');
+            $table->string('contenu')->nullable();
             $table->integer('note');
             $table->integer('idUser')->nullable()->unsigned();
             $table->date('delete_at')->nullable();

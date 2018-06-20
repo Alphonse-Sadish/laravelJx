@@ -17,6 +17,17 @@
             {!! Form::text('note', null, array('name'=>'note','placeholder' => 'note','class' => 'form-control', 'value' => $avis->note ?? old('note'))) !!}
         </div>
     </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group ">
+            <strong>Jeux:</strong>
+            <select  class="form-control" >
+                @foreach(\App\Models\Jeux::all() as $j)
+                    <option name="jeux" value="{{$j->id}}">{{$j->nom}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>

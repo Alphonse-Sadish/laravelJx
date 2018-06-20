@@ -30,6 +30,11 @@ Route::get('/sell','JeuxController@sell');
 
 Route::get('/renseignement','JeuxController@validatesell');
 
+Route::get('/renseignement','JeuxController@validatesell');
+
+Route::get('/categJeux/{element}','JeuxController@categJeux');
+
+
 
 
 // Route Resource
