@@ -2,13 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 30 May 2018 17:40:45 +0000.
+ * Date: Wed, 20 Jun 2018 09:08:03 +0000.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Avi
@@ -18,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $contenu
  * @property int $note
  * @property int $idUser
+ * @property \Carbon\Carbon $delete_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -26,26 +26,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  */
 class Avi extends Eloquent
-
 {
-    use SoftDeletes;
-    public $timestamps = false;
-    const DELETED_AT = 'delete_at';
-
-    protected $casts = [
+	protected $casts = [
 		'note' => 'int',
 		'idUser' => 'int'
+	];
+
+	protected $dates = [
+		'delete_at'
 	];
 
 	protected $fillable = [
 		'titre',
 		'contenu',
 		'note',
-		'idUser'
+		'idUser',
+		'delete_at'
 	];
 
 	public function user()
 	{
-		return $this->belongsTo(\App\User::class, 'idUser');
+		return $this->belongsTo(\App\Models\User::class, 'idUser');
 	}
 }

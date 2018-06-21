@@ -10,37 +10,38 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Message
+ * Class MatchParticipant
  * 
  * @property int $id
- * @property string $content
- * @property int $idUser
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $delete_at
+ * @property int $match_id
+ * @property int $participant_id
  * 
+ * @property \App\Models\Match $match
  * @property \App\Models\User $user
  *
  * @package App\Models
  */
-class Message extends Eloquent
+class MatchParticipant extends Eloquent
 {
 	protected $casts = [
-		'idUser' => 'int'
-	];
-
-	protected $dates = [
-		'delete_at'
+		'match_id' => 'int',
+		'participant_id' => 'int'
 	];
 
 	protected $fillable = [
-		'content',
-		'idUser',
-		'delete_at'
+		'match_id',
+		'participant_id'
 	];
+
+	public function match()
+	{
+		return $this->belongsTo(\App\Models\Match::class);
+	}
 
 	public function user()
 	{
-		return $this->belongsTo(\App\Models\User::class, 'idUser');
+		return $this->belongsTo(\App\Models\User::class, 'participant_id');
 	}
 }

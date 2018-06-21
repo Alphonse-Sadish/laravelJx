@@ -2,14 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 30 May 2018 17:40:45 +0000.
+ * Date: Wed, 20 Jun 2018 09:08:03 +0000.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 /**
  * Class Jeux
@@ -20,8 +18,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $image
  * @property int $idCategorie
  * @property int $idPlateforme
+ * @property string $state
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $delete_at
+ * @property int $prix
  * 
  * @property \App\Models\Category $category
  * @property \App\Models\Plateforme $plateforme
@@ -32,15 +33,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Jeux extends Eloquent
 {
-    use SoftDeletes;
-    public $timestamps = false;
-    const DELETED_AT = 'delete_at';
-
 	protected $table = 'jeux';
 
 	protected $casts = [
 		'idCategorie' => 'int',
-		'idPlateforme' => 'int'
+		'idPlateforme' => 'int',
+		'prix' => 'int'
+	];
+
+	protected $dates = [
+		'delete_at'
 	];
 
 	protected $fillable = [
@@ -48,7 +50,10 @@ class Jeux extends Eloquent
 		'description',
 		'image',
 		'idCategorie',
-		'idPlateforme'
+		'idPlateforme',
+		'state',
+		'delete_at',
+		'prix'
 	];
 
 	public function category()
