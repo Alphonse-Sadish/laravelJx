@@ -46,6 +46,7 @@
                         @else
                                 <li><a class="nav-link" href="{{ route('avis.index') }}">{{ __('Avis') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('categories.index') }}">{{ __('Categories') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('tournoi.index') }}">{{ __('Tournois') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">{{ __('Utilisateurs') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('plateformes.index') }}">{{ __('Plateformes') }}</a></li>
                                 <li><a class="nav-link" href="{{ url('/dons') }}">{{ __('Dons') }}</a></li>

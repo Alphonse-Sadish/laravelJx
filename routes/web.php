@@ -35,6 +35,10 @@ Route::get('/renseignement','JeuxController@validatesell');
 Route::get('/categJeux/{element}','JeuxController@categJeux');
 
 
+Route::post('tournoi/add', 'TournoiController@add');
+
+
+Route::get('tournoi/participe/{id}','TournoiController@participe')->name('tournoi.participe');
 
 
 // Route Resource
@@ -48,6 +52,8 @@ Route::resource('commentaires','CommentaireController');
 Route::resource('jeux','JeuxController');
 
 Route::resource('messages','MessageController');
+
+Route::resource('tournoi','TournoiController');
 
 Route::resource('plateformes','PlateformeController');
 
