@@ -7,24 +7,28 @@
             <center><h1>{{$tournoi->name}}</h1></center>
 
         </div>
-        {{--<h3> Categorie des jeux</h3>--}}
-        {{--@foreach($categorie as $c)--}}
-            {{--<a href="{{url('/categJeux',$c->id)}}"><button type="button"  class="btn btn-secondary">{{$c->titre}}</button></a>--}}
-        {{--@endforeach--}}
-        {{--<a href="{{route('jeux.index')}}"><button type="button"  class="btn btn-secondary">Tous</button></a>--}}
-        {{--@foreach($jeux as $j)--}}
+        Liste des participants :
+        <ul>
+            @foreach($participants as $participant)
+                <li>
+                    {{ $participant->name }}
+                </li>
+            @endforeach
+        </ul>
 
-            {{--<div style="    border-style: solid; border-color:{{$j->category->couleur}}" >--}}
-                {{--<h3><center>{{$j->nom}}</center></h3>--}}
-                {{--<img src="{{$j->image}}">--}}
-                {{--<p> <span style="font-weight: bolder ">Categorie : </span>{{$j->category->titre}}</p>--}}
-                {{--<p> <span style="font-weight: bolder ">Description : </span>{{$j->description}}</p>--}}
-                {{--<p><span style="font-weight: bolder ">Plateforme :</span>{{$j->plateforme->nom}}</p>--}}
-                {{--<p><span style="font-weight: bolder ">Commentaire :</span>{{$j->commentaires->first()->contenu}} </p>--}}
-            {{--</div><br>--}}
-
-        {{--@endforeach--}}
-
+        @if($match_participant!=null)
+            Liste des matchs:
+            <ul>
+                @foreach($match_participant as $match)
+                    <li>
+                        {{ $match[0]['name'] }} VS {{ $match[1]['name'] }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+        <a href="{{ route('tournoi.index') }}">
+            <button type="submit" class="btn btn-default">Retour sur le tableau des tournois</button>
+        </a>
     </div>
 
 @endsection

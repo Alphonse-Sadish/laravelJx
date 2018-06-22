@@ -35,15 +35,10 @@ Route::get('/renseignement','JeuxController@validatesell');
 Route::get('/categJeux/{element}','JeuxController@categJeux');
 
 
-Route::get('tournoi/', 'TournoiController@index');
-
-Route::get('tournoi/add', 'TournoiController@create');
-
 Route::post('tournoi/add', 'TournoiController@add');
 
-Route::get('tournoi/show/{id}','TournoiController@show');
 
-Route::get('tournoi/participe/{id}','TournoiController@participe');
+Route::get('tournoi/participe/{id}','TournoiController@participe')->name('tournoi.participe');
 
 
 // Route Resource
