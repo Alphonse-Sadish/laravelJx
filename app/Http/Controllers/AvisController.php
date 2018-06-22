@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Avi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+
 
 class AvisController extends Controller
 {
@@ -43,13 +45,16 @@ class AvisController extends Controller
             'note' => 'required|numeric',
 
         ]);
+
         $avis = new Avi();
         $avis->titre = $request->titre;
         $avis->note = $request->note;
         $avis->contenu = $request->contenu;
         $avis->idUser = Auth::id();
+        $avis->idJeux = $request->jeux;
         $avis->save();
         return redirect()->route('avis.index')->with('response','Avis a bien été ajouter');
+
     }
 
     /**
@@ -122,4 +127,6 @@ class AvisController extends Controller
             return redirect()->route('avis.index')->with('response','Avis a bien été restaurer');
         }
     }
+
+
 }

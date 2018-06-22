@@ -15,40 +15,59 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Verify if auth and role admin == true
+Route::group(['middleware' => 'admin'],function (){
 
-Auth::routes();
+    Route::resource('categories','CategorieController');
 
-// Route Get
+    Route::resource('plateformes','PlateformeController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('users','UserController');
 
-Route::get('/dons', 'DonsController@index')->name('dons');
+    Route::resource('avis','AvisController');
 
-Route::get('/achatJeux/{element}', 'JeuxController@achatJeux');
-
-Route::get('/sell','JeuxController@sell');
-
-Route::get('/renseignement','JeuxController@validatesell');
-
-Route::get('/renseignement','JeuxController@validatesell');
-
-Route::get('/categJeux/{element}','JeuxController@categJeux');
+    Route::resource('commentaires','CommentaireController');
 
 
+});
+
+// Verify if auth == true
+Route::group(['middleware' => 'auth'],function (){
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::get('/dons', 'DonsController@index');
 
 
-// Route Resource
+    Route::get('/achat', 'DonsController@achat');
 
-Route::resource('avis','AvisController');
+    Route::get('/achatJeux/{params}', 'JeuxController@achatJeux');
 
-Route::resource('categories','CategorieController');
+    Route::get('/sell','JeuxController@sell');
 
-Route::resource('commentaires','CommentaireController');
+    Route::get('/renseignement/{params}','JeuxController@validatesell');
 
-Route::resource('jeux','JeuxController');
+    Route::get('/categJeux/{element}','JeuxController@categJeux');
 
-Route::resource('messages','MessageController');
+    Route::resource('monavis','MonavisController');
 
-Route::resource('plateformes','PlateformeController');
+    Route::get('/jeuxadd','JeuxController@add');
 
-Route::resource('users','UserController');
+    Route::get('/storeJeux','JeuxController@storeJeux');
+
+
+});
+
+
+    Route::get('/jeux','JeuxController@jeux');
+
+    Auth::routes();
+
+
+
+
+
+
+
+
+

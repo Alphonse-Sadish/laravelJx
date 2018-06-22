@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <center><h1>Ajouter un Commentaire</h1>></center>
+            <center><h1>Modifier Avis</h1>></center>
         </div>
-
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -17,8 +17,8 @@
             </div>
         @endif
 
-        {!! Form::open(array('route' => 'commentaires.store','method'=>'POST')) !!}
-        @include('commentaires.form')
+        {!! Form::model($avis, ['method' => 'PATCH','route' => ['monavis.update', $avis->id]]) !!}
+        @include('avis.monAvis.form')
         {!! Form::close() !!}
     </div>
 

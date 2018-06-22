@@ -27,6 +27,7 @@ class CreateJeuxTable extends Migration
             $table->integer('prix')->nullable();
 
 
+
             $table->foreign('idCategorie')->references('id')->on('categories');
             $table->foreign('idPlateforme')->references('id')->on('plateformes');
 

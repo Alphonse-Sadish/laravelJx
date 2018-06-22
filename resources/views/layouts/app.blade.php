@@ -44,11 +44,15 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            @if(\Auth::user()->role == 'admin')
                                 <li><a class="nav-link" href="{{ route('avis.index') }}">{{ __('Avis') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('categories.index') }}">{{ __('Categories') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">{{ __('Utilisateurs') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('plateformes.index') }}">{{ __('Plateformes') }}</a></li>
+                            @endif
+
                                 <li><a class="nav-link" href="{{ url('/dons') }}">{{ __('Dons') }}</a></li>
+
 
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -56,12 +60,40 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('jeux.index') }}">Liste </a>
+                                        <a class="dropdown-item" href="{{ url('/jeux') }}">Liste </a>
                                         <a class="dropdown-item" href="{{ url('/sell') }}">Ventes</a>
-
-
+                                        <a class="dropdown-item" href="{{ url('/jeuxadd') }}">Ajouter</a>
                                     </div>
                                 </li>
+
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Avis <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @if(\Auth::user()->role == 'admin')
+                                            <a class="dropdown-item" href="{{ route('avis.index') }}">Liste </a>
+                                        @endif
+                                        <a class="dropdown-item" href="{{route('monavis.index') }}">Mes avis </a>
+                                    </div>
+                                </li>
+
+
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Commentaire <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @if(\Auth::user()->role == 'admin')
+                                          <a class="dropdown-item" href="{{ route('commentaires.index') }}">Liste </a>
+                                        @endif
+                                            <a class="dropdown-item" href="{{ url('/jeux') }}">Mes commentaires </a>
+                                    </div>
+                                </li>
+
+
 
 
 

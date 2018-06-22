@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class CommentaireController extends Controller
 {
@@ -25,7 +27,7 @@ class CommentaireController extends Controller
      */
     public function create()
     {
-        //
+        return view('commentaires.add');
     }
 
     /**
@@ -36,8 +38,18 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        request()->validate([
+            'contenu' => 'required',
+
+        ]);
+
+        $commentaire = new Commentaire();
+        $commentaire->contenu = $request->contenu;
+        $commentaire->idUser = Auth::id();
+        $commentaire->idJeux = $request->jeux;
+        $commentaire->position = 1;
+        $commentaire->save();
+        return redirect()->route('commentaires.index')->with('response','Commentaire a bien été ajouter');    }
 
     /**
      * Display the specified resource.
@@ -81,6 +93,18 @@ class CommentaireController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+
+        $commentaire = Commentaire::withTrashed()->find($id);
+        if(!$commentaire instanceof Commentaire)
+        {
+            return redirect()->route('avis.index');
+        }
+        if(!$commentaire->trashed()){
+
+            $commentaire->delete();
+            return redirect()->route('avis.index')->with('response','Commentaire a bien été désactiver ');
+        }else{
+            $commentaire->restore();
+            return redirect()->route('avis.index')->with('response','Commentaire a bien été restaurer');
+        }    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Commentaire;
 use App\Models\Jeux;
 use App\Models\Plateforme;
 use App\User;
@@ -17,15 +18,7 @@ class JeuxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $jeux = Jeux::withTrashed()->get();
-        $categorie = Category::all();
 
-
-
-        return view('jeux.index',compact('jeux','categorie'));
-    }
 
     public function categJeux($id){
         $idCateg = $id;
@@ -40,80 +33,16 @@ class JeuxController extends Controller
         return view('jeux.achat.index',compact('jeux'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    public function achatJeux($id){
-        $idJeux = $id;
-        return view('jeux.achat.achat');
+    public function achatJeux($idj){
+        return view('jeux.achat.achat',compact('idj'));
 
     }
-    public function validatesell(Request $request){
+    public function validatesell(Request $request,$idJeux){
          $id = Auth::id();
         request()->validate([
-            'age' => 'required',
+            'age' => 'required|numeric',
             'adresse' => 'required',
             'rue' => 'required',
 
@@ -125,5 +54,45 @@ class JeuxController extends Controller
         $user->appart = $request->appart;
         $user->save();
 
+
+
+        $Jeux = Jeux::find($idJeux);
+        $idJeuxprice = $Jeux->prix;
+        $idJeuxNom = $Jeux->nom;
+        return view('dons.achat',compact('idJeuxprice','idJeuxNom'));
     }
+    public function jeux(){
+        $jeux = Jeux::all();
+        $categorie = Category::all();
+
+        return view('jeux.index',compact('jeux','categorie'));
+    }
+    public function add(){
+        return view('jeux.add');
+
+    }
+    public function storeJeux(Request $request){
+        request()->validate([
+            'nom' => 'required',
+            'description' => 'required',
+            'prix' => 'numeric'
+        ]);
+
+        $jeux = new Jeux();
+        $jeux->nom = $request->nom;
+        $jeux->description = $request->description;
+        $jeux->state = $request->state;
+        $jeux->idCategorie = $request->idCategorie;
+        $jeux->idPlateforme = $request->idPlateforme;
+        $jeux->prix = $request->prix;
+
+
+        $jeux->save();
+
+        return url('/jeux');
+
+
+
+    }
+
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <center><h1>Ajouter un Commentaire</h1>></center>
+            <center><h1>Ajouter un Avis</h1>></center>
         </div>
 
         @if (count($errors) > 0)
@@ -17,8 +17,8 @@
             </div>
         @endif
 
-        {!! Form::open(array('route' => 'commentaires.store','method'=>'POST')) !!}
-        @include('commentaires.form')
+        {!! Form::open(array('route' => 'monavis.store','method'=>'POST')) !!}
+        @include('avis.monAvis.form')
         {!! Form::close() !!}
     </div>
 

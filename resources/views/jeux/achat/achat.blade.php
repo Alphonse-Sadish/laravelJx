@@ -6,9 +6,11 @@
     <div class="container">
         <div class="jumbotron">
             <center><h1>Renseignement</h1></center>
+            <p>Saisir les informations pour pouvoir livrer le jeux</p>
         </div>
         @if (count($errors) > 0)
-            <div class="error">
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -17,7 +19,7 @@
             </div>
         @endif
 
-        <form action="{{url('/renseignement')}}">
+        <form action="{{url('/renseignement',$idj)}}">
             <div class="row">
                 <div class="col-xs-3 col-sm-3 col-md-3">
                     <div class="form-group">
